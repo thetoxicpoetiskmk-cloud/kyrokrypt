@@ -20,16 +20,10 @@ from dotenv import load_dotenv
 load_dotenv()  # pip install python-dotenv
 API_KEY = os.environ.get("BINANCE_API_KEY")
 API_SECRET = os.environ.get("BINANCE_API_SECRET")
-PROXY_URL = os.environ.get("PROXY_URL")  # optional
 
 REST_BASE_URL = "https://fapi.binance.com"
 WS_BASE_URL   = "wss://fstream.binance.com/ws"
 symbol = "ETHUSDT"
-
-# ------------------- PROXY -------------------
-session = requests.Session()
-if PROXY_URL:
-    session.proxies.update({"http": PROXY_URL, "https": PROXY_URL})
 
 # ------------------- Read args -------------------
 if len(sys.argv) >= 4:
@@ -57,6 +51,8 @@ print(f"[CONFIG] Stop Limit:    {stop_limit}")
 print("==================================================")
 
 # ------------------- Helpers -------------------
+session = requests.Session()
+
 def get_server_time():
     """Fetch Binance server time (retry if fails)."""
     url = f"{REST_BASE_URL}/fapi/v1/time"
