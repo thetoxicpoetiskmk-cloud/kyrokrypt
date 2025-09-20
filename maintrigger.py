@@ -63,6 +63,7 @@ def main():
     app.add_handler(CommandHandler("run", trigger))
 
     print("Telegram trigger bot is running (Python 3.13 compatible)...")
+    
     app.run_polling()
 
 if __name__ == "__main__":
